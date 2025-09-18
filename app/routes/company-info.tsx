@@ -131,7 +131,7 @@ export default function CompanyInfo() {
           {/* Submit Button */}
           <Button
             type="submit"
-            className="w-full bg-blue-600 hover:bg-blue-700 text-white py-6 text-xl font-semibold rounded-lg mt-8"
+            className="w-full py-6 text-xl font-semibold rounded-lg mt-8"
           >
             Submit Company Information
           </Button>

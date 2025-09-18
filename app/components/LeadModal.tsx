@@ -150,7 +150,7 @@ const LeadModal: React.FC<LeadModalProps> = ({ isOpen, onClose, assetRange, crit
             {/* Submit Button */}
             <Button
               type="submit"
-              className="w-full bg-blue-600 hover:bg-blue-700 text-white py-4 text-lg font-semibold rounded-lg mt-8"
+              className="w-full py-4 text-lg font-semibold rounded-lg mt-8"
             >
               Submit to Sales
             </Button>

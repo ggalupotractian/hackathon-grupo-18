@@ -107,7 +107,7 @@ export default function Home() {
 
           <Button 
             onClick={handleNext}
-            className="w-full bg-blue-600 hover:bg-blue-700 text-white py-6 text-xl font-semibold flex items-center justify-center space-x-3 mt-12 rounded-lg shadow-sm"
+            className="w-full py-6 text-xl font-semibold flex items-center justify-center space-x-3 mt-12 rounded-lg shadow-sm"
           >
             <span>Next</span>
             <span className="text-xl">→</span>
