@@ -2,6 +2,7 @@ import React, { useState, useMemo } from 'react'
 import { Button } from '../components/ui/button'
 import { Card } from '../components/ui/card'
 import { useNavigate } from 'react-router'
+import AssetSummaryModal from '../components/AssetSummaryModal'
 
 interface Asset {
   id: string
@@ -241,6 +242,7 @@ export default function AssetInfo() {
   const [selectedManufacturer, setSelectedManufacturer] = useState('')
   const [selectedEquipmentType, setSelectedEquipmentType] = useState('')
   const [assetQuantities, setAssetQuantities] = useState<Record<string, number>>({})
+  const [showSummaryModal, setShowSummaryModal] = useState(false)
 
   // Filter assets based on search and filters
   const filteredAssets = useMemo(() => {
@@ -262,6 +264,11 @@ export default function AssetInfo() {
 
   // Calculate total asset count
   const totalAssetCount = Object.values(assetQuantities).reduce((sum, quantity) => sum + quantity, 0)
+
+  // Get selected assets for the modal
+  const selectedAssets = useMemo(() => {
+    return MOCK_ASSETS.filter(asset => assetQuantities[asset.id] > 0)
+  }, [assetQuantities])
 
   const handleAddAsset = (assetId: string) => {
     if (totalAssetCount >= 20) {
@@ -302,7 +309,17 @@ export default function AssetInfo() {
       alert('Please select at least one asset')
       return
     }
+    setShowSummaryModal(true)
+  }
+
+  const handleModalClose = () => {
+    setShowSummaryModal(false)
+  }
+
+  const handleModalConfirm = () => {
+    setShowSummaryModal(false)
     console.log('Selected assets with quantities:', assetQuantities)
+    console.log('Selected assets data:', selectedAssets)
     // TODO: Navigate to next step or submit
     console.log('Ready to proceed to next step')
   }
@@ -456,6 +473,16 @@ export default function AssetInfo() {
             <span className="text-xl">→</span>
           </Button>
         </div>
+
+        {/* Asset Summary Modal */}
+        <AssetSummaryModal
+          isOpen={showSummaryModal}
+          onClose={handleModalClose}
+          onConfirm={handleModalConfirm}
+          selectedAssets={selectedAssets}
+          assetQuantities={assetQuantities}
+          equipmentTypes={EQUIPMENT_TYPES}
+        />
       </Card>
     </div>
   )
