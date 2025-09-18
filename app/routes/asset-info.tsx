@@ -14,6 +14,54 @@ interface Asset {
 
 // Mock asset database
 const MOCK_ASSETS: Asset[] = [
+  // U.S. Motors
+  {
+    id: 'usm-dp10p2e',
+    model: 'DP10P2E',
+    secondaryModel: 'DP10P2E',
+    manufacturer: 'U.S. Motors',
+    equipmentType: 'AC_motors',
+    contents: 'Premium Efficient General Purpose Motors'
+  },
+  {
+    id: 'usm-t10p3e',
+    model: 'T10P3E',
+    secondaryModel: 'T10P3E',
+    manufacturer: 'U.S. Motors',
+    equipmentType: 'AC_motors',
+    contents: 'TEFC Premium Efficient Motors'
+  },
+  {
+    id: 'usm-k10p2e',
+    model: 'K10P2E',
+    manufacturer: 'U.S. Motors',
+    equipmentType: 'AC_motors',
+    contents: 'Close-Coupled Pump Motors'
+  },
+
+  // Toshiba Motors
+  {
+    id: 'toshiba-eqp3',
+    model: 'EQP3-1836T',
+    manufacturer: 'Toshiba',
+    equipmentType: 'AC_motors',
+    contents: 'Premium Efficiency Three Phase Motors'
+  },
+  {
+    id: 'toshiba-eqp3-215t',
+    model: 'EQP3-2156T',
+    manufacturer: 'Toshiba',
+    equipmentType: 'AC_motors',
+    contents: 'Premium Efficiency Three Phase Motors'
+  },
+  {
+    id: 'toshiba-b3-184t',
+    model: 'B3-0184TEFC3B',
+    manufacturer: 'Toshiba',
+    equipmentType: 'AC_motors',
+    contents: 'High Efficiency TEFC Motors'
+  },
+
   // Baldor-Reliance Motors
   {
     id: 'vxl051522',
@@ -32,169 +80,147 @@ const MOCK_ASSETS: Asset[] = [
     contents: 'Explosion Proof General Purpose Motors'
   },
   {
-    id: 'vxm050742-5',
-    model: 'VXM050742-5',
-    secondaryModel: 'VXM050742-5',
-    manufacturer: 'Baldor-Reliance',
-    equipmentType: 'AC_motors',
-    contents: 'Explosion Proof General Purpose Motors'
-  },
-  {
     id: 'xl141522t',
     model: 'XL141522T',
     secondaryModel: 'XL141522T',
     manufacturer: 'Baldor-Reliance',
     equipmentType: 'AC_motors',
-    contents: 'Explosion Proof General Purpose Motors'
-  },
-  
-  // WEG Motors
-  {
-    id: 'w22-182t',
-    model: 'W22-182T',
-    manufacturer: 'WEG',
-    equipmentType: 'AC_motors',
-    contents: 'High Efficiency Three Phase Motors'
-  },
-  {
-    id: 'w22-184t',
-    model: 'W22-184T',
-    manufacturer: 'WEG',
-    equipmentType: 'AC_motors',
-    contents: 'High Efficiency Three Phase Motors'
-  },
-  {
-    id: 'w21-213t',
-    model: 'W21-213T',
-    manufacturer: 'WEG',
-    equipmentType: 'AC_motors',
-    contents: 'Standard Efficiency Three Phase Motors'
+    contents: 'General Purpose TEFC Motors'
   },
 
-  // ABB Motors
+  // Volvo Construction Equipment
   {
-    id: 'abb-m3bp160',
-    model: 'M3BP160',
-    manufacturer: 'ABB',
-    equipmentType: 'AC_motors',
-    contents: 'Premium Efficiency Motors'
-  },
-  {
-    id: 'abb-m3bp180',
-    model: 'M3BP180',
-    manufacturer: 'ABB',
-    equipmentType: 'AC_motors',
-    contents: 'Premium Efficiency Motors'
-  },
-
-  // Siemens Motors
-  {
-    id: 'siemens-1le1',
-    model: '1LE1001-1CB23',
-    manufacturer: 'Siemens',
-    equipmentType: 'AC_motors',
-    contents: 'General Purpose Three Phase Motors'
-  },
-  {
-    id: 'siemens-1le5',
-    model: '1LE5003-1DB23',
-    manufacturer: 'Siemens',
-    equipmentType: 'AC_motors',
-    contents: 'High Efficiency Three Phase Motors'
-  },
-
-  // Pumps - Grundfos
-  {
-    id: 'grundfos-cr15',
-    model: 'CR15-6',
-    manufacturer: 'Grundfos',
-    equipmentType: 'pumps',
-    contents: 'Centrifugal Multi-Stage Pumps'
-  },
-  {
-    id: 'grundfos-cr20',
-    model: 'CR20-8',
-    manufacturer: 'Grundfos',
-    equipmentType: 'pumps',
-    contents: 'Centrifugal Multi-Stage Pumps'
-  },
-  {
-    id: 'grundfos-nb50',
-    model: 'NB50-250/270',
-    manufacturer: 'Grundfos',
-    equipmentType: 'pumps',
-    contents: 'Single-Stage Close-Coupled Pumps'
-  },
-
-  // Pumps - KSB
-  {
-    id: 'ksb-etanorm',
-    model: 'Etanorm 125-200',
-    manufacturer: 'KSB',
-    equipmentType: 'pumps',
-    contents: 'Standardized End Suction Pumps'
-  },
-  {
-    id: 'ksb-multitec',
-    model: 'Multitec 40-8',
-    manufacturer: 'KSB',
-    equipmentType: 'pumps',
-    contents: 'Horizontal Multistage High-Pressure Pumps'
-  },
-
-  // Compressors - Atlas Copco
-  {
-    id: 'atlas-ga30',
-    model: 'GA30VSD+',
-    manufacturer: 'Atlas Copco',
+    id: 'volvo-ec220e',
+    model: 'EC220E',
+    manufacturer: 'Volvo Construction',
     equipmentType: 'compressors',
-    contents: 'Variable Speed Drive Air Compressors'
+    contents: 'Hydraulic Excavator Main Pump'
   },
   {
-    id: 'atlas-ga45',
-    model: 'GA45VSD+',
-    manufacturer: 'Atlas Copco',
-    equipmentType: 'compressors',
-    contents: 'Variable Speed Drive Air Compressors'
+    id: 'volvo-l60h',
+    model: 'L60H',
+    manufacturer: 'Volvo Construction',
+    equipmentType: 'pumps',
+    contents: 'Wheel Loader Hydraulic Pump'
   },
   {
-    id: 'atlas-xas68',
-    model: 'XAS68',
-    manufacturer: 'Atlas Copco',
-    equipmentType: 'compressors',
-    contents: 'Portable Diesel Air Compressors'
-  },
-
-  // Compressors - Kaeser
-  {
-    id: 'kaeser-asd35',
-    model: 'ASD35',
-    manufacturer: 'Kaeser',
-    equipmentType: 'compressors',
-    contents: 'Rotary Screw Compressors'
-  },
-  {
-    id: 'kaeser-csd82',
-    model: 'CSD82',
-    manufacturer: 'Kaeser',
-    equipmentType: 'compressors',
-    contents: 'Two-Stage Rotary Screw Compressors'
+    id: 'volvo-a40g',
+    model: 'A40G',
+    manufacturer: 'Volvo Construction',
+    equipmentType: 'pumps',
+    contents: 'Articulated Hauler Transmission Pump'
   },
 
-  // Fans - ebm-papst
+  // NPK Construction Equipment
   {
-    id: 'ebmpapst-a4e300',
-    model: 'A4E300-AP02-01',
-    manufacturer: 'ebm-papst',
+    id: 'npk-e225',
+    model: 'E-225',
+    manufacturer: 'NPK',
+    equipmentType: 'compressors',
+    contents: 'Hydraulic Hammer Compressor Unit'
+  },
+  {
+    id: 'npk-gf4',
+    model: 'GF-4',
+    manufacturer: 'NPK',
+    equipmentType: 'gearboxes',
+    contents: 'Vibratory Compactor Gearbox'
+  },
+
+  // LeeBoy Construction
+  {
+    id: 'leeboy-8515',
+    model: '8515',
+    manufacturer: 'LeeBoy',
+    equipmentType: 'pumps',
+    contents: 'Asphalt Paver Hydraulic Pump'
+  },
+  {
+    id: 'leeboy-1000',
+    model: '1000T',
+    manufacturer: 'LeeBoy',
+    equipmentType: 'compressors',
+    contents: 'Asphalt Distributor Compressor'
+  },
+
+  // Morbark Wood Processing
+  {
+    id: 'morbark-3800',
+    model: '3800',
+    manufacturer: 'Morbark',
+    equipmentType: 'gearboxes',
+    contents: 'Wood Chipper Drive Gearbox'
+  },
+  {
+    id: 'morbark-950',
+    model: '950 Tub Grinder',
+    manufacturer: 'Morbark',
+    equipmentType: 'bearings',
+    contents: 'Tub Grinder Main Bearing Assembly'
+  },
+
+  // Astec Industries
+  {
+    id: 'astec-dbl120',
+    model: 'DBL120',
+    manufacturer: 'Astec',
+    equipmentType: 'pumps',
+    contents: 'Hot Mix Plant Aggregate Pump'
+  },
+  {
+    id: 'astec-rt60',
+    model: 'RT-60',
+    manufacturer: 'Astec',
     equipmentType: 'fans',
-    contents: 'Axial Fans with External Rotor Motor'
+    contents: 'Asphalt Plant Baghouse Fan'
+  },
+
+  // ASV Construction Equipment
+  {
+    id: 'asv-rt75',
+    model: 'RT-75',
+    manufacturer: 'ASV',
+    equipmentType: 'pumps',
+    contents: 'Compact Track Loader Drive Pump'
   },
   {
-    id: 'ebmpapst-r4e400',
-    model: 'R4E400-AI26-05',
-    manufacturer: 'ebm-papst',
-    equipmentType: 'fans',
-    contents: 'Centrifugal Fans with Forward Curved Blades'
+    id: 'asv-vh100',
+    model: 'VH100',
+    manufacturer: 'ASV',
+    equipmentType: 'gearboxes',
+    contents: 'Posi-Track Drive Gearbox'
+  },
+
+  // Manitowoc Cranes
+  {
+    id: 'manitowoc-999',
+    model: '999',
+    manufacturer: 'Manitowoc',
+    equipmentType: 'gearboxes',
+    contents: 'Crawler Crane Swing Gearbox'
+  },
+  {
+    id: 'manitowoc-2250',
+    model: '2250',
+    manufacturer: 'Manitowoc',
+    equipmentType: 'pumps',
+    contents: 'Crawler Crane Hydraulic Pump'
+  },
+
+  // Shuttlewagon Mobile Railcar Movers
+  {
+    id: 'sw-3000',
+    model: 'SW3000',
+    manufacturer: 'Shuttlewagon',
+    equipmentType: 'gearboxes',
+    contents: 'Mobile Railcar Mover Drive Gearbox'
+  },
+  {
+    id: 'sw-1500',
+    model: 'SW1500',
+    manufacturer: 'Shuttlewagon',
+    equipmentType: 'pumps',
+    contents: 'Railcar Mover Hydraulic Pump'
   }
 ]
 
@@ -214,7 +240,7 @@ export default function AssetInfo() {
   const [searchTerm, setSearchTerm] = useState('')
   const [selectedManufacturer, setSelectedManufacturer] = useState('')
   const [selectedEquipmentType, setSelectedEquipmentType] = useState('')
-  const [selectedAssets, setSelectedAssets] = useState<Set<string>>(new Set())
+  const [assetQuantities, setAssetQuantities] = useState<Record<string, number>>({})
 
   // Filter assets based on search and filters
   const filteredAssets = useMemo(() => {
@@ -234,34 +260,56 @@ export default function AssetInfo() {
     })
   }, [searchTerm, selectedManufacturer, selectedEquipmentType])
 
-  const handleAssetToggle = (assetId: string) => {
-    const newSelected = new Set(selectedAssets)
-    if (newSelected.has(assetId)) {
-      newSelected.delete(assetId)
-    } else {
-      if (newSelected.size < 20) { // Limit to 20 assets
-        newSelected.add(assetId)
-      } else {
-        alert('Maximum of 20 assets can be selected')
-        return
-      }
+  // Calculate total asset count
+  const totalAssetCount = Object.values(assetQuantities).reduce((sum, quantity) => sum + quantity, 0)
+
+  const handleAddAsset = (assetId: string) => {
+    if (totalAssetCount >= 20) {
+      alert('Maximum of 20 assets can be selected')
+      return
     }
-    setSelectedAssets(newSelected)
+    
+    setAssetQuantities(prev => ({
+      ...prev,
+      [assetId]: 1
+    }))
+  }
+
+  const handleQuantityChange = (assetId: string, change: number) => {
+    setAssetQuantities(prev => {
+      const currentQuantity = prev[assetId] || 0
+      const newQuantity = currentQuantity + change
+      
+      if (newQuantity <= 0) {
+        // Remove asset if quantity becomes 0 or negative
+        const { [assetId]: removed, ...rest } = prev
+        return rest
+      } else if (totalAssetCount - currentQuantity + newQuantity > 20) {
+        // Don't allow exceeding 20 total assets
+        alert('Maximum of 20 assets can be selected')
+        return prev
+      } else {
+        return {
+          ...prev,
+          [assetId]: newQuantity
+        }
+      }
+    })
   }
 
   const handleNext = () => {
-    if (selectedAssets.size === 0) {
+    if (totalAssetCount === 0) {
       alert('Please select at least one asset')
       return
     }
-    console.log('Selected assets:', Array.from(selectedAssets))
+    console.log('Selected assets with quantities:', assetQuantities)
     // TODO: Navigate to next step or submit
     console.log('Ready to proceed to next step')
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
-      <Card className="w-full max-w-6xl p-8 border border-gray-200 bg-white shadow-lg">
+    <div className="min-h-screen bg-gray-50 p-4">
+      <Card className="w-full max-w-6xl mx-auto mt-8 p-8 border border-gray-200 bg-white shadow-lg">
         <div className="mb-8">
           <button
             onClick={() => navigate('/company-info')}
@@ -313,7 +361,7 @@ export default function AssetInfo() {
             <div className="bg-blue-600 text-white px-3 py-3 rounded-lg flex items-center space-x-2">
               <span className="text-sm">Selected</span>
               <span className="bg-white text-blue-600 px-2 py-1 rounded font-bold text-sm">
-                {selectedAssets.size}
+                {totalAssetCount}
               </span>
             </div>
           </div>
@@ -337,9 +385,6 @@ export default function AssetInfo() {
                   <tr key={asset.id} className="border-b border-gray-100 hover:bg-gray-50">
                     <td className="p-4">
                       <div className="flex items-center space-x-3">
-                        <div className="w-12 h-12 bg-gray-100 rounded flex items-center justify-center text-gray-400 text-xs">
-                          NO IMAGE<br/>AVAILABLE
-                        </div>
                         <div>
                           <div className="font-medium text-gray-900">{asset.model}</div>
                           {asset.secondaryModel && (
@@ -354,16 +399,34 @@ export default function AssetInfo() {
                     </td>
                     <td className="p-4 text-gray-700">{asset.contents}</td>
                     <td className="p-4">
-                      <button
-                        onClick={() => handleAssetToggle(asset.id)}
-                        className={`px-4 py-2 rounded-lg font-medium transition-all ${
-                          selectedAssets.has(asset.id)
-                            ? 'bg-red-100 text-red-700 hover:bg-red-200'
-                            : 'bg-blue-50 text-blue-700 hover:bg-blue-100'
-                        }`}
-                      >
-                        {selectedAssets.has(asset.id) ? '− Remove' : '+ Add Asset'}
-                      </button>
+                      {assetQuantities[asset.id] ? (
+                        // Quantity controls
+                        <div className="flex items-center space-x-2">
+                          <button
+                            onClick={() => handleQuantityChange(asset.id, -1)}
+                            className="w-8 h-8 rounded-lg bg-gray-100 hover:bg-gray-200 flex items-center justify-center text-gray-600 font-bold transition-all"
+                          >
+                            −
+                          </button>
+                          <span className="w-8 text-center font-semibold text-gray-900">
+                            {assetQuantities[asset.id]}
+                          </span>
+                          <button
+                            onClick={() => handleQuantityChange(asset.id, 1)}
+                            className="w-8 h-8 rounded-lg bg-blue-50 hover:bg-blue-100 flex items-center justify-center text-blue-600 font-bold transition-all"
+                          >
+                            +
+                          </button>
+                        </div>
+                      ) : (
+                        // Add button
+                        <button
+                          onClick={() => handleAddAsset(asset.id)}
+                          className="px-4 py-2 rounded-lg font-medium transition-all bg-blue-50 text-blue-700 hover:bg-blue-100"
+                        >
+                          + Add Asset
+                        </button>
+                      )}
                     </td>
                   </tr>
                 ))}
@@ -379,13 +442,13 @@ export default function AssetInfo() {
         </div>
 
         {/* Next Button */}
-        {selectedAssets.size > 0 && (
+        {totalAssetCount > 0 && (
           <div className="mt-8 flex justify-end">
             <Button
               onClick={handleNext}
               className="bg-blue-600 hover:bg-blue-700 text-white py-3 px-8 text-lg font-semibold flex items-center space-x-3"
             >
-              <span>Next ({selectedAssets.size}/20)</span>
+              <span>Next ({totalAssetCount}/20)</span>
               <span className="text-xl">→</span>
             </Button>
           </div>
