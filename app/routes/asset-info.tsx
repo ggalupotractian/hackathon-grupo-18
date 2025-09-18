@@ -9,7 +9,7 @@ interface Asset {
   secondaryModel?: string
   manufacturer: string
   equipmentType: string
-  contents: string
+  estimatedSensors: number
 }
 
 // Mock asset database
@@ -21,7 +21,7 @@ const MOCK_ASSETS: Asset[] = [
     secondaryModel: 'DP10P2E',
     manufacturer: 'U.S. Motors',
     equipmentType: 'AC_motors',
-    contents: 'Premium Efficient General Purpose Motors'
+    estimatedSensors: 2
   },
   {
     id: 'usm-t10p3e',
@@ -29,14 +29,14 @@ const MOCK_ASSETS: Asset[] = [
     secondaryModel: 'T10P3E',
     manufacturer: 'U.S. Motors',
     equipmentType: 'AC_motors',
-    contents: 'TEFC Premium Efficient Motors'
+    estimatedSensors: 3
   },
   {
     id: 'usm-k10p2e',
     model: 'K10P2E',
     manufacturer: 'U.S. Motors',
     equipmentType: 'AC_motors',
-    contents: 'Close-Coupled Pump Motors'
+    estimatedSensors: 2
   },
 
   // Toshiba Motors
@@ -45,21 +45,21 @@ const MOCK_ASSETS: Asset[] = [
     model: 'EQP3-1836T',
     manufacturer: 'Toshiba',
     equipmentType: 'AC_motors',
-    contents: 'Premium Efficiency Three Phase Motors'
+    estimatedSensors: 3
   },
   {
     id: 'toshiba-eqp3-215t',
     model: 'EQP3-2156T',
     manufacturer: 'Toshiba',
     equipmentType: 'AC_motors',
-    contents: 'Premium Efficiency Three Phase Motors'
+    estimatedSensors: 3
   },
   {
     id: 'toshiba-b3-184t',
     model: 'B3-0184TEFC3B',
     manufacturer: 'Toshiba',
     equipmentType: 'AC_motors',
-    contents: 'High Efficiency TEFC Motors'
+    estimatedSensors: 2
   },
 
   // Baldor-Reliance Motors
@@ -69,7 +69,7 @@ const MOCK_ASSETS: Asset[] = [
     secondaryModel: 'VXL051522',
     manufacturer: 'Baldor-Reliance',
     equipmentType: 'AC_motors',
-    contents: 'Explosion Proof General Purpose Motors'
+    estimatedSensors: 4
   },
   {
     id: 'vxm050542-5',
@@ -77,7 +77,7 @@ const MOCK_ASSETS: Asset[] = [
     secondaryModel: 'VXM050542-5',
     manufacturer: 'Baldor-Reliance',
     equipmentType: 'AC_motors',
-    contents: 'Explosion Proof General Purpose Motors'
+    estimatedSensors: 4
   },
   {
     id: 'xl141522t',
@@ -85,7 +85,7 @@ const MOCK_ASSETS: Asset[] = [
     secondaryModel: 'XL141522T',
     manufacturer: 'Baldor-Reliance',
     equipmentType: 'AC_motors',
-    contents: 'General Purpose TEFC Motors'
+    estimatedSensors: 2
   },
 
   // Volvo Construction Equipment
@@ -94,21 +94,21 @@ const MOCK_ASSETS: Asset[] = [
     model: 'EC220E',
     manufacturer: 'Volvo Construction',
     equipmentType: 'compressors',
-    contents: 'Hydraulic Excavator Main Pump'
+    estimatedSensors: 4
   },
   {
     id: 'volvo-l60h',
     model: 'L60H',
     manufacturer: 'Volvo Construction',
     equipmentType: 'pumps',
-    contents: 'Wheel Loader Hydraulic Pump'
+    estimatedSensors: 3
   },
   {
     id: 'volvo-a40g',
     model: 'A40G',
     manufacturer: 'Volvo Construction',
     equipmentType: 'pumps',
-    contents: 'Articulated Hauler Transmission Pump'
+    estimatedSensors: 3
   },
 
   // NPK Construction Equipment
@@ -117,14 +117,14 @@ const MOCK_ASSETS: Asset[] = [
     model: 'E-225',
     manufacturer: 'NPK',
     equipmentType: 'compressors',
-    contents: 'Hydraulic Hammer Compressor Unit'
+    estimatedSensors: 3
   },
   {
     id: 'npk-gf4',
     model: 'GF-4',
     manufacturer: 'NPK',
     equipmentType: 'gearboxes',
-    contents: 'Vibratory Compactor Gearbox'
+    estimatedSensors: 2
   },
 
   // LeeBoy Construction
@@ -133,14 +133,14 @@ const MOCK_ASSETS: Asset[] = [
     model: '8515',
     manufacturer: 'LeeBoy',
     equipmentType: 'pumps',
-    contents: 'Asphalt Paver Hydraulic Pump'
+    estimatedSensors: 2
   },
   {
     id: 'leeboy-1000',
     model: '1000T',
     manufacturer: 'LeeBoy',
     equipmentType: 'compressors',
-    contents: 'Asphalt Distributor Compressor'
+    estimatedSensors: 3
   },
 
   // Morbark Wood Processing
@@ -149,14 +149,14 @@ const MOCK_ASSETS: Asset[] = [
     model: '3800',
     manufacturer: 'Morbark',
     equipmentType: 'gearboxes',
-    contents: 'Wood Chipper Drive Gearbox'
+    estimatedSensors: 1
   },
   {
     id: 'morbark-950',
     model: '950 Tub Grinder',
     manufacturer: 'Morbark',
     equipmentType: 'bearings',
-    contents: 'Tub Grinder Main Bearing Assembly'
+    estimatedSensors: 1
   },
 
   // Astec Industries
@@ -165,14 +165,14 @@ const MOCK_ASSETS: Asset[] = [
     model: 'DBL120',
     manufacturer: 'Astec',
     equipmentType: 'pumps',
-    contents: 'Hot Mix Plant Aggregate Pump'
+    estimatedSensors: 2
   },
   {
     id: 'astec-rt60',
     model: 'RT-60',
     manufacturer: 'Astec',
     equipmentType: 'fans',
-    contents: 'Asphalt Plant Baghouse Fan'
+    estimatedSensors: 1
   },
 
   // ASV Construction Equipment
@@ -181,14 +181,14 @@ const MOCK_ASSETS: Asset[] = [
     model: 'RT-75',
     manufacturer: 'ASV',
     equipmentType: 'pumps',
-    contents: 'Compact Track Loader Drive Pump'
+    estimatedSensors: 2
   },
   {
     id: 'asv-vh100',
     model: 'VH100',
     manufacturer: 'ASV',
     equipmentType: 'gearboxes',
-    contents: 'Posi-Track Drive Gearbox'
+    estimatedSensors: 1
   },
 
   // Manitowoc Cranes
@@ -197,14 +197,14 @@ const MOCK_ASSETS: Asset[] = [
     model: '999',
     manufacturer: 'Manitowoc',
     equipmentType: 'gearboxes',
-    contents: 'Crawler Crane Swing Gearbox'
+    estimatedSensors: 2
   },
   {
     id: 'manitowoc-2250',
     model: '2250',
     manufacturer: 'Manitowoc',
     equipmentType: 'pumps',
-    contents: 'Crawler Crane Hydraulic Pump'
+    estimatedSensors: 3
   },
 
   // Shuttlewagon Mobile Railcar Movers
@@ -213,14 +213,14 @@ const MOCK_ASSETS: Asset[] = [
     model: 'SW3000',
     manufacturer: 'Shuttlewagon',
     equipmentType: 'gearboxes',
-    contents: 'Mobile Railcar Mover Drive Gearbox'
+    estimatedSensors: 2
   },
   {
     id: 'sw-1500',
     model: 'SW1500',
     manufacturer: 'Shuttlewagon',
     equipmentType: 'pumps',
-    contents: 'Railcar Mover Hydraulic Pump'
+    estimatedSensors: 2
   }
 ]
 
@@ -248,7 +248,7 @@ export default function AssetInfo() {
       const matchesSearch = searchTerm === '' || 
         asset.model.toLowerCase().includes(searchTerm.toLowerCase()) ||
         asset.manufacturer.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        asset.contents.toLowerCase().includes(searchTerm.toLowerCase())
+        EQUIPMENT_TYPES.find(type => type.value === asset.equipmentType)?.label.toLowerCase().includes(searchTerm.toLowerCase())
       
       const matchesManufacturer = selectedManufacturer === '' || 
         asset.manufacturer === selectedManufacturer
@@ -308,8 +308,8 @@ export default function AssetInfo() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 p-4">
-      <Card className="w-full max-w-6xl mx-auto mt-8 p-8 border border-gray-200 bg-white shadow-lg">
+    <div className="h-screen bg-gray-50 p-4 flex">
+      <Card className="w-full max-w-6xl mx-auto p-8 border border-gray-200 bg-white shadow-lg flex flex-col h-full">
         <div className="mb-8">
           <button
             onClick={() => navigate('/company-info')}
@@ -368,15 +368,15 @@ export default function AssetInfo() {
         </div>
 
         {/* Assets Table */}
-        <div className="bg-white shadow-sm border border-gray-200 rounded-lg mb-6">
-          <div className="overflow-x-auto">
+        <div className="flex-1 bg-white shadow-sm border border-gray-200 rounded-lg mb-6 overflow-hidden flex flex-col">
+          <div className="flex-1 overflow-auto">
             <table className="w-full">
-              <thead className="bg-gray-50 border-b border-gray-200">
+              <thead className="bg-gray-50 border-b border-gray-200 sticky top-0">
                 <tr>
                   <th className="text-left p-4 font-medium text-gray-700">Model</th>
                   <th className="text-left p-4 font-medium text-gray-700">Manufacturer</th>
                   <th className="text-left p-4 font-medium text-gray-700">Equipment Type</th>
-                  <th className="text-left p-4 font-medium text-gray-700">Contents</th>
+                  <th className="text-center p-4 font-medium text-gray-700">Estimated Sensors</th>
                   <th className="text-left p-4 font-medium text-gray-700">Action</th>
                 </tr>
               </thead>
@@ -397,7 +397,7 @@ export default function AssetInfo() {
                     <td className="p-4 text-gray-900">
                       {EQUIPMENT_TYPES.find(type => type.value === asset.equipmentType)?.label || asset.equipmentType}
                     </td>
-                    <td className="p-4 text-gray-700">{asset.contents}</td>
+                    <td className="p-4 text-gray-900 text-center font-semibold">{asset.estimatedSensors}</td>
                     <td className="p-4">
                       {assetQuantities[asset.id] ? (
                         // Quantity controls
@@ -435,24 +435,27 @@ export default function AssetInfo() {
           </div>
           
           {filteredAssets.length === 0 && (
-            <div className="text-center py-12 text-gray-500">
+            <div className="text-center py-12 text-gray-500 flex-1 flex items-center justify-center">
               <p>No assets found matching your criteria.</p>
             </div>
           )}
         </div>
 
         {/* Next Button */}
-        {totalAssetCount > 0 && (
-          <div className="mt-8 flex justify-end">
-            <Button
-              onClick={handleNext}
-              className="bg-blue-600 hover:bg-blue-700 text-white py-3 px-8 text-lg font-semibold flex items-center space-x-3"
-            >
-              <span>Next ({totalAssetCount}/20)</span>
-              <span className="text-xl">→</span>
-            </Button>
-          </div>
-        )}
+        <div className="mt-3 flex justify-end flex-shrink-0">
+          <Button
+            onClick={handleNext}
+            disabled={totalAssetCount === 0}
+            className={`py-3 px-8 text-lg font-semibold flex items-center space-x-3 transition-all ${
+              totalAssetCount === 0 
+                ? 'bg-gray-300 text-gray-500 cursor-not-allowed' 
+                : 'bg-blue-600 hover:bg-blue-700 text-white'
+            }`}
+          >
+            <span>Next ({totalAssetCount}/20)</span>
+            <span className="text-xl">→</span>
+          </Button>
+        </div>
       </Card>
     </div>
   )
