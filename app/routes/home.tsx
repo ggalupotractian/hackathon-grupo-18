@@ -1,13 +1,27 @@
 import { Button } from "../components/ui/button"
 import { Card } from "../components/ui/card"
 import { useState } from "react"
+import { useNavigate } from "react-router"
+import LeadModal from "../components/LeadModal"
 
 export default function Home() {
-  const [assetCount, setAssetCount] = useState(1) // Default to "50-100" range
-  const [criticalPercentage, setCriticalPercentage] = useState(1) // Default to "10% to 20%" range
+  const navigate = useNavigate()
+  const [assetCount, setAssetCount] = useState(0) // Default to "0 - 20" range
+  const [criticalPercentage, setCriticalPercentage] = useState(0) // Default to "0 to 10%" range
+  const [isModalOpen, setIsModalOpen] = useState(false)
 
-  const assetRanges = ["0 - 20", "20 - 50", "50 - 100", "100 - 150", "150 - 300", "300+"]
+  const assetRanges = ["0 - 20", "20 - 50", "50 - 150", "150 - 300", "300+"]
   const criticalRanges = ["0 to 10%", "10% to 20%", "30%+"]
+
+  const handleNext = () => {
+    if (assetCount === 0) {
+      // 0-20 assets: redirect to company info page
+      navigate('/company-info')
+    } else {
+      // 20-50+ assets: open modal
+      setIsModalOpen(true)
+    }
+  }
 
   return (
     <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
@@ -91,12 +105,23 @@ export default function Home() {
             </div>
           </div>
 
-          <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white py-6 text-xl font-semibold flex items-center justify-center space-x-3 mt-12 rounded-lg shadow-sm">
+          <Button 
+            onClick={handleNext}
+            className="w-full bg-blue-600 hover:bg-blue-700 text-white py-6 text-xl font-semibold flex items-center justify-center space-x-3 mt-12 rounded-lg shadow-sm"
+          >
             <span>Next</span>
             <span className="text-xl">→</span>
           </Button>
         </div>
       </Card>
+
+      {/* Lead Modal */}
+      <LeadModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        assetRange={assetRanges[assetCount]}
+        criticalRange={criticalRanges[criticalPercentage]}
+      />
     </div>
   )
 }
