@@ -25,8 +25,8 @@ export default function CompanyInfo() {
     e.preventDefault()
     // Handle form submission here
     console.log('Company info submitted:', formData)
-    // Redirect to success page or back to home
-    navigate('/')
+    // Navigate to asset information collection page
+    navigate('/asset-info')
   }
 
   const formatCNPJ = (value: string) => {
@@ -128,12 +128,13 @@ export default function CompanyInfo() {
             </div>
           </div>
 
-          {/* Submit Button */}
+          {/* Next Button */}
           <Button
             type="submit"
-            className="w-full py-6 text-xl font-semibold rounded-lg mt-8"
+            className="w-full bg-blue-600 hover:bg-blue-700 text-white py-6 text-xl font-semibold flex items-center justify-center space-x-3 rounded-lg mt-8"
           >
-            Submit Company Information
+            <span>Next</span>
+            <span className="text-xl">→</span>
           </Button>
         </form>
       </Card>
