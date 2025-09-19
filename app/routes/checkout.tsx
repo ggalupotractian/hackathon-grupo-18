@@ -41,11 +41,11 @@ const EQUIPMENT_TYPES = [
 export default function Checkout() {
   const navigate = useNavigate();
   const location = useLocation();
-  
+
   // Get data from navigation state
   const checkoutData = location.state as CheckoutState | null;
   console.log(checkoutData);
-  
+
   // Sensor pricing
   const SENSOR_PRICE = 600.00;
 
@@ -60,7 +60,7 @@ export default function Checkout() {
     const quantity = checkoutData.assetQuantities[asset.id] || 0;
     return sum + (asset.estimatedSensors * quantity);
   }, 0) || 0;
-  
+
   const totalAssets = checkoutData ? Object.values(checkoutData.assetQuantities).reduce((sum, qty) => sum + qty, 0) : 0;
   const subtotal = totalSensors * SENSOR_PRICE;
   const receiverCost = 700.00; // Base receiver cost
@@ -243,8 +243,7 @@ export default function Checkout() {
                         Smart Trac Pro Sensors
                       </h3>
                       <p className="text-sm text-gray-600 mt-1">
-                        Advanced IoT sensors with real-time monitoring capabilities, 
-                        temperature and humidity tracking for your selected assets
+                        Advanced IoT sensors with real-time monitoring capabilities for your selected assets
                       </p>
                       <div className="mt-2 flex items-center justify-between">
                         <span className="text-sm text-gray-500">
@@ -263,7 +262,7 @@ export default function Checkout() {
                         {checkoutData.selectedAssets.map((asset) => {
                           const quantity = checkoutData.assetQuantities[asset.id] || 0;
                           const sensorsForAsset = asset.estimatedSensors * quantity;
-                          
+
                           return (
                             <div key={asset.id} className="bg-gray-50 p-3 rounded-lg">
                               <div className="flex justify-between items-start">
@@ -311,8 +310,8 @@ export default function Checkout() {
                   {!checkoutData && (
                     <div className="text-center py-4 text-gray-500">
                       <p className="text-sm">No asset data found. Please return to asset selection.</p>
-                      <Button 
-                        onClick={() => navigate('/asset-info')} 
+                      <Button
+                        onClick={() => navigate('/asset-info')}
                         className="mt-2 text-sm bg-blue-600 hover:bg-blue-700 text-white"
                       >
                         Back to Asset Selection

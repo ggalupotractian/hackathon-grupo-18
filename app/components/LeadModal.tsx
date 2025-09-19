@@ -59,7 +59,7 @@ const LeadModal = ({ isOpen, onClose, assetRange }: LeadModalProps) => {
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
-      <Card className="w-full max-w-lg bg-white rounded-lg shadow-xl relative">
+      <Card className="w-full max-w-2xl bg-white rounded-lg shadow-xl relative">
         {/* Close Button */}
         <button
           onClick={onClose}
