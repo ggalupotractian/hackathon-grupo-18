@@ -12,31 +12,31 @@ import { Lock } from "lucide-react";
 import { useNavigate, useLocation } from "react-router";
 
 interface Asset {
-  id: string
-  model: string
-  secondaryModel?: string
-  manufacturer: string
-  equipmentType: string
-  estimatedSensors: number
+  id: string;
+  model: string;
+  secondaryModel?: string;
+  manufacturer: string;
+  equipmentType: string;
+  estimatedSensors: number;
 }
 
 interface CheckoutState {
-  selectedAssets: Asset[]
-  assetQuantities: Record<string, number>
+  selectedAssets: Asset[];
+  assetQuantities: Record<string, number>;
   contactInfo: {
-    contactName: string
-    email: string
-  }
+    contactName: string;
+    email: string;
+  };
 }
 
 const EQUIPMENT_TYPES = [
-  { value: 'AC_motors', label: 'AC Motors' },
-  { value: 'pumps', label: 'Pumps' },
-  { value: 'compressors', label: 'Compressors' },
-  { value: 'fans', label: 'Fans' },
-  { value: 'gearboxes', label: 'Gearboxes' },
-  { value: 'bearings', label: 'Bearings' }
-]
+  { value: "AC_motors", label: "AC Motors" },
+  { value: "pumps", label: "Pumps" },
+  { value: "compressors", label: "Compressors" },
+  { value: "fans", label: "Fans" },
+  { value: "gearboxes", label: "Gearboxes" },
+  { value: "bearings", label: "Bearings" },
+];
 
 export default function Checkout() {
   const navigate = useNavigate();
@@ -47,7 +47,7 @@ export default function Checkout() {
   console.log(checkoutData);
 
   // Sensor pricing
-  const SENSOR_PRICE = 600.00;
+  const SENSOR_PRICE = 600.0;
 
   const [cardNumber, setCardNumber] = useState("");
   const [expirationDate, setExpirationDate] = useState("");
@@ -56,14 +56,20 @@ export default function Checkout() {
   const [isLoadingPurchase, setIsLoadingPurchase] = useState(false);
 
   // Calculate totals
-  const totalSensors = checkoutData?.selectedAssets.reduce((sum, asset) => {
-    const quantity = checkoutData.assetQuantities[asset.id] || 0;
-    return sum + (asset.estimatedSensors * quantity);
-  }, 0) || 0;
+  const totalSensors =
+    checkoutData?.selectedAssets.reduce((sum, asset) => {
+      const quantity = checkoutData.assetQuantities[asset.id] || 0;
+      return sum + asset.estimatedSensors * quantity;
+    }, 0) || 0;
 
-  const totalAssets = checkoutData ? Object.values(checkoutData.assetQuantities).reduce((sum, qty) => sum + qty, 0) : 0;
+  const totalAssets = checkoutData
+    ? Object.values(checkoutData.assetQuantities).reduce(
+        (sum, qty) => sum + qty,
+        0
+      )
+    : 0;
   const subtotal = totalSensors * SENSOR_PRICE;
-  const receiverCost = 700.00; // Base receiver cost
+  const receiverCost = 700.0; // Base receiver cost
   const total = subtotal + receiverCost;
 
   const formatCardNumber = (value: string) => {
@@ -100,7 +106,15 @@ export default function Checkout() {
   };
 
   const handleExpirationChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const formatted = formatExpirationDate(e.target.value);
+    const value = e.target.value;
+    const previousValue = expirationDate;
+
+    if (value.length < previousValue.length && value.endsWith("/")) {
+      setExpirationDate(value.slice(0, -1));
+      return;
+    }
+
+    const formatted = formatExpirationDate(value);
     if (formatted.length <= 5) {
       // MM/YY
       setExpirationDate(formatted);
@@ -243,13 +257,16 @@ export default function Checkout() {
                         Smart Trac Pro Sensors
                       </h3>
                       <p className="text-sm text-gray-600 mt-1">
-                        Advanced IoT sensors with real-time monitoring capabilities for your selected assets
+                        Advanced IoT sensors with real-time monitoring
+                        capabilities for your selected assets
                       </p>
                       <div className="mt-2 flex items-center justify-between">
                         <span className="text-sm text-gray-500">
                           Quantity: {totalSensors}
                         </span>
-                        <span className="font-medium">${SENSOR_PRICE.toFixed(2)} each</span>
+                        <span className="font-medium">
+                          ${SENSOR_PRICE.toFixed(2)} each
+                        </span>
                       </div>
                     </div>
                   </div>
@@ -257,26 +274,41 @@ export default function Checkout() {
                   {/* Selected Assets Details */}
                   {checkoutData && checkoutData.selectedAssets.length > 0 && (
                     <div>
-                      <h4 className="font-medium text-gray-900 mb-3">Selected Assets ({totalAssets} total):</h4>
+                      <h4 className="font-medium text-gray-900 mb-3">
+                        Selected Assets ({totalAssets} total):
+                      </h4>
                       <div className="space-y-2 max-h-40 overflow-y-auto">
                         {checkoutData.selectedAssets.map((asset) => {
-                          const quantity = checkoutData.assetQuantities[asset.id] || 0;
-                          const sensorsForAsset = asset.estimatedSensors * quantity;
+                          const quantity =
+                            checkoutData.assetQuantities[asset.id] || 0;
+                          const sensorsForAsset =
+                            asset.estimatedSensors * quantity;
 
                           return (
-                            <div key={asset.id} className="bg-gray-50 p-3 rounded-lg">
+                            <div
+                              key={asset.id}
+                              className="bg-gray-50 p-3 rounded-lg"
+                            >
                               <div className="flex justify-between items-start">
                                 <div className="flex-1">
-                                  <div className="font-medium text-sm text-gray-900">{asset.model}</div>
+                                  <div className="font-medium text-sm text-gray-900">
+                                    {asset.model}
+                                  </div>
                                   <div className="text-xs text-gray-500">
-                                    {asset.manufacturer} • {
-                                      EQUIPMENT_TYPES.find(type => type.value === asset.equipmentType)?.label || asset.equipmentType
-                                    }
+                                    {asset.manufacturer} •{" "}
+                                    {EQUIPMENT_TYPES.find(
+                                      (type) =>
+                                        type.value === asset.equipmentType
+                                    )?.label || asset.equipmentType}
                                   </div>
                                 </div>
                                 <div className="text-right ml-4">
-                                  <div className="text-sm font-medium text-gray-900">×{quantity}</div>
-                                  <div className="text-xs text-gray-500">{sensorsForAsset} sensors</div>
+                                  <div className="text-sm font-medium text-gray-900">
+                                    ×{quantity}
+                                  </div>
+                                  <div className="text-xs text-gray-500">
+                                    {sensorsForAsset} sensors
+                                  </div>
                                 </div>
                               </div>
                             </div>
@@ -291,17 +323,39 @@ export default function Checkout() {
                   {/* Pricing Breakdown */}
                   <div className="space-y-2">
                     <div className="flex justify-between items-center">
-                      <span className="text-sm text-gray-600">Sensors ({totalSensors}×)</span>
-                      <span className="text-sm">${subtotal.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
+                      <span className="text-sm text-gray-600">
+                        Sensors ({totalSensors}×)
+                      </span>
+                      <span className="text-sm">
+                        $
+                        {subtotal.toLocaleString("en-US", {
+                          minimumFractionDigits: 2,
+                          maximumFractionDigits: 2,
+                        })}
+                      </span>
                     </div>
                     <div className="flex justify-between items-center">
-                      <span className="text-sm text-gray-600">Receiver (1×)</span>
-                      <span className="text-sm">${receiverCost.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
+                      <span className="text-sm text-gray-600">
+                        Receiver (1×)
+                      </span>
+                      <span className="text-sm">
+                        $
+                        {receiverCost.toLocaleString("en-US", {
+                          minimumFractionDigits: 2,
+                          maximumFractionDigits: 2,
+                        })}
+                      </span>
                     </div>
                     <div className="border-t border-gray-200 pt-2">
                       <div className="flex justify-between items-center text-lg font-semibold">
                         <span>Total</span>
-                        <span>${total.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
+                        <span>
+                          $
+                          {total.toLocaleString("en-US", {
+                            minimumFractionDigits: 2,
+                            maximumFractionDigits: 2,
+                          })}
+                        </span>
                       </div>
                     </div>
                   </div>
@@ -309,9 +363,11 @@ export default function Checkout() {
                   {/* Fallback for no data */}
                   {!checkoutData && (
                     <div className="text-center py-4 text-gray-500">
-                      <p className="text-sm">No asset data found. Please return to asset selection.</p>
+                      <p className="text-sm">
+                        No asset data found. Please return to asset selection.
+                      </p>
                       <Button
-                        onClick={() => navigate('/asset-info')}
+                        onClick={() => navigate("/asset-info")}
                         className="mt-2 text-sm bg-blue-600 hover:bg-blue-700 text-white"
                       >
                         Back to Asset Selection
