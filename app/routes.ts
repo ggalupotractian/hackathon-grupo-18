@@ -4,5 +4,6 @@ export default [
   index("routes/home.tsx"),
   route("company-info", "routes/company-info.tsx"),
   route("asset-info", "routes/asset-info.tsx"),
-  route("checkout", "routes/checkout.tsx"),
+  route('checkout', 'routes/checkout.tsx'),
+  route('purchase-completed', 'routes/purchase-completed.tsx'),
 ] satisfies RouteConfig;

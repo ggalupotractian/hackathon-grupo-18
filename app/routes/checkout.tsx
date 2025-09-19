@@ -10,8 +10,11 @@ import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { Lock } from "lucide-react";
 import { Header } from "@/components/header";
+import { useNavigate } from "react-router";
 
 export default function Checkout() {
+  const navigate = useNavigate();
+
   const [cardNumber, setCardNumber] = useState("");
   const [expirationDate, setExpirationDate] = useState("");
   const [cvc, setCvc] = useState("");
@@ -79,7 +82,7 @@ export default function Checkout() {
       cvc,
     });
 
-    setIsLoadingPurchase(false);
+    navigate("/purchase-completed");
   };
 
   return (
@@ -216,7 +219,7 @@ export default function Checkout() {
                       <span>$105.00</span>
                     </div>
                     <p className="text-sm text-gray-500">
-                      3 × Smart Monitoring Sensor
+                      3 × Smart Trac Pro Sensor
                     </p>
                     <p className="text-sm text-gray-500">1 × Receiver</p>
                   </div>
