@@ -1,62 +1,61 @@
-import React, { useState } from 'react'
-import { Button } from './ui/button'
-import { Card } from './ui/card'
+import React, { useState } from "react";
+import { Button } from "./ui/button";
+import { Card } from "./ui/card";
 
 interface LeadModalProps {
-  isOpen: boolean
-  onClose: () => void
-  assetRange: string
-  criticalRange: string
+  isOpen: boolean;
+  onClose: () => void;
+  assetRange: string;
 }
 
-const LeadModal: React.FC<LeadModalProps> = ({ isOpen, onClose, assetRange, criticalRange }) => {
+const LeadModal = ({ isOpen, onClose, assetRange }: LeadModalProps) => {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    jobTitle: '',
-    industry: ''
-  })
+    name: "",
+    email: "",
+    phone: "",
+    jobTitle: "",
+    industry: "",
+  });
 
   const jobTitles = [
-    'Maintenance Manager',
-    'Operations Manager',
-    'Plant Manager',
-    'Reliability Engineer',
-    'Facility Manager',
-    'Production Manager',
-    'Engineering Manager',
-    'Other'
-  ]
+    "Maintenance Manager",
+    "Operations Manager",
+    "Plant Manager",
+    "Reliability Engineer",
+    "Facility Manager",
+    "Production Manager",
+    "Engineering Manager",
+    "Other",
+  ];
 
   const industries = [
-    'Manufacturing',
-    'Oil & Gas',
-    'Mining',
-    'Food & Beverage',
-    'Pharmaceutical',
-    'Chemical',
-    'Pulp & Paper',
-    'Automotive',
-    'Aerospace',
-    'Other'
-  ]
+    "Manufacturing",
+    "Oil & Gas",
+    "Mining",
+    "Food & Beverage",
+    "Pharmaceutical",
+    "Chemical",
+    "Pulp & Paper",
+    "Automotive",
+    "Aerospace",
+    "Other",
+  ];
 
   const handleInputChange = (field: string, value: string) => {
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [field]: value
-    }))
-  }
+      [field]: value,
+    }));
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
+    e.preventDefault();
     // Handle form submission here
-    console.log('Form submitted:', { ...formData, assetRange, criticalRange })
-    onClose()
-  }
+    console.log("Form submitted:", { ...formData, assetRange });
+    onClose();
+  };
 
-  if (!isOpen) return null
+  if (!isOpen) return null;
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
@@ -71,8 +70,10 @@ const LeadModal: React.FC<LeadModalProps> = ({ isOpen, onClose, assetRange, crit
 
         {/* Modal Content */}
         <div className="p-8">
-          <h2 className="text-3xl font-bold text-gray-800 mb-8 text-center">Get Custom Quote</h2>
-          
+          <h2 className="text-3xl font-bold text-gray-800 mb-8 text-center">
+            Get Custom Quote
+          </h2>
+
           <form onSubmit={handleSubmit} className="space-y-6">
             {/* Name */}
             <div>
@@ -80,7 +81,7 @@ const LeadModal: React.FC<LeadModalProps> = ({ isOpen, onClose, assetRange, crit
                 type="text"
                 placeholder="Name"
                 value={formData.name}
-                onChange={(e) => handleInputChange('name', e.target.value)}
+                onChange={(e) => handleInputChange("name", e.target.value)}
                 className="w-full p-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none text-gray-700 placeholder-gray-400"
                 required
               />
@@ -92,7 +93,7 @@ const LeadModal: React.FC<LeadModalProps> = ({ isOpen, onClose, assetRange, crit
                 type="email"
                 placeholder="Work Email"
                 value={formData.email}
-                onChange={(e) => handleInputChange('email', e.target.value)}
+                onChange={(e) => handleInputChange("email", e.target.value)}
                 className="w-full p-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none text-gray-700 placeholder-gray-400"
                 required
               />
@@ -110,7 +111,7 @@ const LeadModal: React.FC<LeadModalProps> = ({ isOpen, onClose, assetRange, crit
                   type="tel"
                   placeholder="Phone"
                   value={formData.phone}
-                  onChange={(e) => handleInputChange('phone', e.target.value)}
+                  onChange={(e) => handleInputChange("phone", e.target.value)}
                   className="flex-1 p-4 border border-gray-300 rounded-r-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none text-gray-700 placeholder-gray-400"
                   required
                 />
@@ -120,13 +121,19 @@ const LeadModal: React.FC<LeadModalProps> = ({ isOpen, onClose, assetRange, crit
               <div>
                 <select
                   value={formData.jobTitle}
-                  onChange={(e) => handleInputChange('jobTitle', e.target.value)}
+                  onChange={(e) =>
+                    handleInputChange("jobTitle", e.target.value)
+                  }
                   className="w-full p-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none text-gray-700 bg-white appearance-none cursor-pointer"
                   required
                 >
-                  <option value="" disabled className="text-gray-400">Job Title</option>
-                  {jobTitles.map(title => (
-                    <option key={title} value={title}>{title}</option>
+                  <option value="" disabled className="text-gray-400">
+                    Job Title
+                  </option>
+                  {jobTitles.map((title) => (
+                    <option key={title} value={title}>
+                      {title}
+                    </option>
                   ))}
                 </select>
               </div>
@@ -136,13 +143,17 @@ const LeadModal: React.FC<LeadModalProps> = ({ isOpen, onClose, assetRange, crit
             <div>
               <select
                 value={formData.industry}
-                onChange={(e) => handleInputChange('industry', e.target.value)}
+                onChange={(e) => handleInputChange("industry", e.target.value)}
                 className="w-full p-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none text-gray-700 bg-white appearance-none cursor-pointer"
                 required
               >
-                <option value="" disabled className="text-gray-400">Industry Sector</option>
-                {industries.map(industry => (
-                  <option key={industry} value={industry}>{industry}</option>
+                <option value="" disabled className="text-gray-400">
+                  Industry Sector
+                </option>
+                {industries.map((industry) => (
+                  <option key={industry} value={industry}>
+                    {industry}
+                  </option>
                 ))}
               </select>
             </div>
@@ -158,7 +169,7 @@ const LeadModal: React.FC<LeadModalProps> = ({ isOpen, onClose, assetRange, crit
         </div>
       </Card>
     </div>
-  )
-}
+  );
+};
 
-export default LeadModal
+export default LeadModal;
