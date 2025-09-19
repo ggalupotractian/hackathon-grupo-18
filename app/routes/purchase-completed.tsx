@@ -59,8 +59,6 @@ export default function PurchaseCompleted() {
                       are on their way!
                     </p>
                   </div>
-
-                  <Button variant="link">Download receipt</Button>
                 </CardHeader>
 
                 <CardContent className="space-y-8">
