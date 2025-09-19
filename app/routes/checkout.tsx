@@ -248,9 +248,11 @@ export default function Checkout() {
                 <CardContent className="space-y-6">
                   {/* Sensor Information */}
                   <div className="flex gap-4">
-                    <div className="w-20 h-20 bg-gradient-to-br from-blue-100 to-blue-200 rounded-lg flex items-center justify-center">
-                      <div className="w-8 h-8 bg-blue-500 rounded-full"></div>
-                    </div>
+                    <img
+                      src="/smart-trac.png"
+                      alt="Smart trac sensor"
+                      className="w-24 h-24"
+                    />
 
                     <div className="flex-1">
                       <h3 className="font-semibold text-gray-900">
