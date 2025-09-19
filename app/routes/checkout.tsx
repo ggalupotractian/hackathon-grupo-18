@@ -10,16 +10,62 @@ import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { Lock } from "lucide-react";
 import { Header } from "@/components/header";
-import { useNavigate } from "react-router";
+import { useNavigate, useLocation } from "react-router";
+
+interface Asset {
+  id: string
+  model: string
+  secondaryModel?: string
+  manufacturer: string
+  equipmentType: string
+  estimatedSensors: number
+}
+
+interface CheckoutState {
+  selectedAssets: Asset[]
+  assetQuantities: Record<string, number>
+  contactInfo: {
+    contactName: string
+    email: string
+  }
+}
+
+const EQUIPMENT_TYPES = [
+  { value: 'AC_motors', label: 'AC Motors' },
+  { value: 'pumps', label: 'Pumps' },
+  { value: 'compressors', label: 'Compressors' },
+  { value: 'fans', label: 'Fans' },
+  { value: 'gearboxes', label: 'Gearboxes' },
+  { value: 'bearings', label: 'Bearings' }
+]
 
 export default function Checkout() {
   const navigate = useNavigate();
+  const location = useLocation();
+  
+  // Get data from navigation state
+  const checkoutData = location.state as CheckoutState | null;
+  console.log(checkoutData);
+  
+  // Sensor pricing
+  const SENSOR_PRICE = 600.00;
 
   const [cardNumber, setCardNumber] = useState("");
   const [expirationDate, setExpirationDate] = useState("");
   const [cvc, setCvc] = useState("");
   const [cardholderName, setCardholderName] = useState("");
   const [isLoadingPurchase, setIsLoadingPurchase] = useState(false);
+
+  // Calculate totals
+  const totalSensors = checkoutData?.selectedAssets.reduce((sum, asset) => {
+    const quantity = checkoutData.assetQuantities[asset.id] || 0;
+    return sum + (asset.estimatedSensors * quantity);
+  }, 0) || 0;
+  
+  const totalAssets = checkoutData ? Object.values(checkoutData.assetQuantities).reduce((sum, qty) => sum + qty, 0) : 0;
+  const subtotal = totalSensors * SENSOR_PRICE;
+  const receiverCost = 700.00; // Base receiver cost
+  const total = subtotal + receiverCost;
 
   const formatCardNumber = (value: string) => {
     const v = value.replace(/\s+/g, "").replace(/[^0-9]/gi, "");
@@ -189,6 +235,7 @@ export default function Checkout() {
                 </CardHeader>
 
                 <CardContent className="space-y-6">
+                  {/* Sensor Information */}
                   <div className="flex gap-4">
                     <div className="w-20 h-20 bg-gradient-to-br from-blue-100 to-blue-200 rounded-lg flex items-center justify-center">
                       <div className="w-8 h-8 bg-blue-500 rounded-full"></div>
@@ -196,33 +243,85 @@ export default function Checkout() {
 
                     <div className="flex-1">
                       <h3 className="font-semibold text-gray-900">
-                        Smart Monitoring Sensor
+                        Smart Trac Pro Sensors
                       </h3>
                       <p className="text-sm text-gray-600 mt-1">
-                        Advanced IoT sensor with real-time monitoring
-                        capabilities, temperature and humidity tracking
+                        Advanced IoT sensors with real-time monitoring capabilities, 
+                        temperature and humidity tracking for your selected assets
                       </p>
                       <div className="mt-2 flex items-center justify-between">
                         <span className="text-sm text-gray-500">
-                          Quantity: 3
+                          Quantity: {totalSensors}
                         </span>
-                        <span className="font-medium">$35.00 each</span>
+                        <span className="font-medium">${SENSOR_PRICE.toFixed(2)} each</span>
                       </div>
                     </div>
                   </div>
 
+                  {/* Selected Assets Details */}
+                  {checkoutData && checkoutData.selectedAssets.length > 0 && (
+                    <div>
+                      <h4 className="font-medium text-gray-900 mb-3">Selected Assets ({totalAssets} total):</h4>
+                      <div className="space-y-2 max-h-40 overflow-y-auto">
+                        {checkoutData.selectedAssets.map((asset) => {
+                          const quantity = checkoutData.assetQuantities[asset.id] || 0;
+                          const sensorsForAsset = asset.estimatedSensors * quantity;
+                          
+                          return (
+                            <div key={asset.id} className="bg-gray-50 p-3 rounded-lg">
+                              <div className="flex justify-between items-start">
+                                <div className="flex-1">
+                                  <div className="font-medium text-sm text-gray-900">{asset.model}</div>
+                                  <div className="text-xs text-gray-500">
+                                    {asset.manufacturer} • {
+                                      EQUIPMENT_TYPES.find(type => type.value === asset.equipmentType)?.label || asset.equipmentType
+                                    }
+                                  </div>
+                                </div>
+                                <div className="text-right ml-4">
+                                  <div className="text-sm font-medium text-gray-900">×{quantity}</div>
+                                  <div className="text-xs text-gray-500">{sensorsForAsset} sensors</div>
+                                </div>
+                              </div>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  )}
+
                   <div className="border-t border-gray-200"></div>
 
+                  {/* Pricing Breakdown */}
                   <div className="space-y-2">
-                    <div className="flex justify-between items-center text-lg font-semibold">
-                      <span>Total</span>
-                      <span>$105.00</span>
+                    <div className="flex justify-between items-center">
+                      <span className="text-sm text-gray-600">Sensors ({totalSensors}×)</span>
+                      <span className="text-sm">${subtotal.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
                     </div>
-                    <p className="text-sm text-gray-500">
-                      3 × Smart Trac Pro Sensor
-                    </p>
-                    <p className="text-sm text-gray-500">1 × Receiver</p>
+                    <div className="flex justify-between items-center">
+                      <span className="text-sm text-gray-600">Receiver (1×)</span>
+                      <span className="text-sm">${receiverCost.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
+                    </div>
+                    <div className="border-t border-gray-200 pt-2">
+                      <div className="flex justify-between items-center text-lg font-semibold">
+                        <span>Total</span>
+                        <span>${total.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
+                      </div>
+                    </div>
                   </div>
+
+                  {/* Fallback for no data */}
+                  {!checkoutData && (
+                    <div className="text-center py-4 text-gray-500">
+                      <p className="text-sm">No asset data found. Please return to asset selection.</p>
+                      <Button 
+                        onClick={() => navigate('/asset-info')} 
+                        className="mt-2 text-sm bg-blue-600 hover:bg-blue-700 text-white"
+                      >
+                        Back to Asset Selection
+                      </Button>
+                    </div>
+                  )}
                 </CardContent>
               </Card>
             </div>
