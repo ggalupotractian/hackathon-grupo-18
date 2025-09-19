@@ -63,7 +63,7 @@ const AssetSummaryModal: React.FC<AssetSummaryModalProps> = ({
             </div>
             <div className="bg-blue-50 p-4 rounded-lg">
               <div className="text-3xl font-bold text-blue-600">{totalSensors}</div>
-              <div className="font-semibold text-blue-800">Estimated Sensors Required</div>
+              <div className="text-blue-800">Estimated Sensors Required</div>
             </div>
           </div>
 

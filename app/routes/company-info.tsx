@@ -21,6 +21,8 @@ export default function CompanyInfo() {
     e.preventDefault();
     // Handle form submission here
     console.log('Contact info submitted:', formData)
+    // Store contact info in localStorage for checkout
+    localStorage.setItem('contactInfo', JSON.stringify(formData))
     // Navigate to asset information collection page
     navigate('/asset-info')
   }
