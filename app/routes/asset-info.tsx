@@ -365,7 +365,7 @@ export default function AssetInfo() {
     }
 
     return (
-        <div className="h-screen bg-gray-50 p-4 flex">
+        <div className="h-screen bg-gray-50 p-4 flex" style={{ height: 'calc(100vh - 65px)' }}>
             <Card className="w-full max-w-6xl mx-auto p-8 border border-gray-200 bg-white shadow-lg flex flex-col h-full">
                 <div className="mb-8">
 
@@ -497,9 +497,10 @@ export default function AssetInfo() {
                 <div className="mt-3 flex justify-between">
                     <Button
                         onClick={() => navigate('/company-info')}
-                        className="bg-gray-100 text-gray-700 hover:bg-gray-200 py-3  px-8 text-xl font-semibold"
+                        className="bg-gray-100 text-gray-700 hover:bg-gray-200 py-3  px-8 text-lg font-semibold flex items-center"
                     >
-                        <span>← Back</span>
+                        <span className="text-xl">←</span>
+                        <span> Back</span>
                     </Button>
                     <Button
                         onClick={handleNext}

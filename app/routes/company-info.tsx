@@ -28,7 +28,7 @@ export default function CompanyInfo() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
+    <div className="bg-gray-50 flex items-center justify-center p-4" style={{ height: 'calc(100vh - 65px)' }}>
       <Card className="w-full max-w-2xl p-12 border border-gray-200 bg-white shadow-lg">
         <div className="mb-8">
           <h1 className="text-4xl font-bold text-gray-900 mb-4">
@@ -76,7 +76,8 @@ export default function CompanyInfo() {
               className="flex-1 bg-gray-100 text-gray-700 hover:bg-gray-200 py-6 px-8 text-xl font-semibold rounded-lg"
               variant="outline"
             >
-              ← Back
+              <span className="text-xl">←</span>
+              <span>Back</span>
             </Button>
             <Button
               type="submit"

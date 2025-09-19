@@ -9,7 +9,6 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { Lock } from "lucide-react";
-import { Header } from "@/components/header";
 import { useNavigate, useLocation } from "react-router";
 
 interface Asset {
@@ -133,8 +132,6 @@ export default function Checkout() {
 
   return (
     <>
-      <Header />
-
       <div className="py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">

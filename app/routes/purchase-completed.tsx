@@ -1,7 +1,6 @@
 import { Card, CardHeader, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { CheckCircle, Package, Truck, Home, Clock } from "lucide-react";
-import { Header } from "@/components/header";
 import { cn } from "@/lib/utils";
 
 export default function PurchaseCompleted() {
@@ -42,8 +41,6 @@ export default function PurchaseCompleted() {
 
   return (
     <>
-      <Header />
-
       <div className="py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto">
           <div className="space-y-8">
